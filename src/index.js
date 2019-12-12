@@ -1,21 +1,24 @@
 'use strict';
 
+import validation from './modules/validation';
 import burgerMenu from './modules/burgerMenu';
+import togglePopUp from './modules/togglePopUp';
+import sendForm from './modules/sendForm';
+
 /*
 
-import validation from './modules/validation';
+
 import countTimer from './modules/countTimer';
 
-import togglePopUp from './modules/togglePopUp';
 import tabs from './modules/tabs';
 import toggleImg from './modules/toggleImg';
 import onlyNumber from './modules/onlyNumber';
 import slider from './modules/slider';
 import calc from './modules/calc';
-import sendForm from './modules/sendForm';
 
 
-validation();
+
+
 
 // таймер
 
@@ -42,9 +45,11 @@ slider();
 
 calc(100);
 
-// send-ajax
-sendForm();
+
 
 */
-
+validation();
+// send-ajax
+sendForm();
+togglePopUp();
 burgerMenu();

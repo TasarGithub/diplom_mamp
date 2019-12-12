@@ -1,7 +1,6 @@
 {
   "name": "diplom_middle",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,5 +20,14 @@
   },
   "dependencies": {
     "webpack-dev-server": "^3.9.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TasarGithub/diplom_mamp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TasarGithub/diplom_mamp/issues"
+  },
+  "homepage": "https://github.com/TasarGithub/diplom_mamp#readme",
+  "description": ""
 }
