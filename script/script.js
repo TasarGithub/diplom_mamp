@@ -98,34 +98,40 @@ const togglePopUp = () => {
   popUp.forEach((popUpItem) => {
     //debugger;
     if ((popUpItem.id === 'callback_form') || (popUpItem.id === 'free_visit_form' )) {
-      const popUpBtn = popUpItem.querySelector( '.btn' ); 
+      
+      const popUpBtn = document.querySelector( `[data-popup="#${popUpItem.id}"]` ); 
       console.log('popUpBtn: ', popUpBtn);
 
-
+      console.log('popUpItem: ', popUpItem);
       const  popUpContent = popUpItem.querySelector('.form-content'),
-        popUpForm = popUpItem.querySelector('form[name = "callback_form"');//[name ="${popUpItem.id}"]`);
-        console.log('popUpItem: ', popUpItem);
+       // popUpForm = popUpItem.querySelector('form[name = "callback_form"');//[name ="${popUpItem.id}"]`);
+       popUpForm = popUpItem.querySelector('form');
         console.log('popUpForm: ', popUpForm);
       // кнопки запуска модальных окон
 
       
       let flyInterval,
         count = 0.01;
-        popUpContent.style.opacity = 0;
+      
+      popUpContent.style.opacity = 0;
 
       //фция открытия мод окна
         popUpBtn.addEventListener('click', () => {
-          // проверка , если очистили форму и вызываем вторично, то показать все поля вновь
-          console.log('popUpItem.dataset.hasOwnProperty (flagNone): ', popUpContent.dataset.hasOwnProperty ('flagNone'), popUpContent.dataset, popUpContent);
-          if (popUpContent.dataset.hasOwnProperty ('flagNone')){
-            popUpContent.querySelectorAll('*').forEach(item => {
-              if (item.hasAttribute('display')){
+          // проверка , если очистили форму и вызываем вторично, то показать все поля вновь за счет
+          // удаления расставленных нами style.display === 'none'
+
+          if (popUpForm.dataset.hasOwnProperty ('flagNone')){
+
+            popUpForm.querySelectorAll('*').forEach(item => {
+
+              if (item.hasAttribute('style')){
+                
                 if (item.style.display === 'none') {
-                  item.style.display = 'block';
+                  item.removeAttribute('style');
                 }
               }
-            });
 
+            });
           }
           popUpItem.style.display = 'block';
           flyInterval = requestAnimationFrame(flyAnimate);
