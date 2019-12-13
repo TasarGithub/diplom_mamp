@@ -4,7 +4,7 @@
 
 
 const cleaningInput = (item) => {
-  console.log('cleaningInput');
+  
   item.querySelectorAll('input').forEach(item =>{
     console.log('item.type: ', item.type);
     if(item.type ==='text' || item.type ==='tel' ){
@@ -223,24 +223,8 @@ const togglePopUp = () => {
 togglePopUp();
 
 const sendForm = function () {
-  
 
-  /* 
-  
-  <form action="" id="footer_form">
-  
-  <form name="banner-form" id="banner-form" action="#" method="post">
-  
-  <form action="" id="card_order">
-  
-  <form name="callback-form" id="form1" action="#" method="post">
-  
-  <form name="free-visit-form" id="form2" action="#" method="post">
-  
-  */
-    const //popUp = document.querySelector('.popup'),
-    //popUpContent = document.querySelector('.popup-content'),
-    form = document.querySelectorAll('form[method="post"]'),
+    const form = document.querySelectorAll('form[method="post"]'),
     
     objMessage = {
       errorMessage: 'Что то не так ',

@@ -6,46 +6,54 @@ const togglePopUp = () => {
        
   popUp.forEach((popUpItem) => {
     //debugger;
-    //console.log('popUpItem: ', popUpItem);
-    //debb
     if ((popUpItem.id === 'callback_form') || (popUpItem.id === 'free_visit_form' )) {
+      
       const popUpBtn = document.querySelector( `[data-popup="#${popUpItem.id}"]` ); 
-   // } else if  {
+      //console.log('popUpBtn: ', popUpBtn);
 
-   // }
-      const  popUpContent = popUpItem.querySelector('.form-content');
+      //console.log('popUpItem: ', popUpItem);
+      const  popUpContent = popUpItem.querySelector('.form-content'),
+       // popUpForm = popUpItem.querySelector('form[name = "callback_form"');//[name ="${popUpItem.id}"]`);
+       popUpForm = popUpItem.querySelector('form');
+        //console.log('popUpForm: ', popUpForm);
       // кнопки запуска модальных окон
 
-      console.log(`[data-popup=#"${popUpItem.id}"]`);
-     // const popUpBtn = document.querySelector( `.${popUpItem.id}` ); 
-      console.log('popUpBtn: ', popUpBtn);
       
-       // console.log('popUpContent,popUp,popUpBtn: ', popUpContent,popUp,popUpBtn);
       let flyInterval,
         count = 0.01;
-        popUpContent.style.opacity = 0;
-        //alert('1111');
-      //console.log('popUpItem: ', popUpItem);
-      // popUpBtn.forEach((elem) => {
+      
+      popUpContent.style.opacity = 0;
+
+      //фция открытия мод окна
         popUpBtn.addEventListener('click', () => {
-            // console.log('elem: ', elem);
-            // if (elem.getAttribute('data-popup')=== '#free_visit_form') {
-          //  if (elem.getAttribute('data-popup')=== '#free_visit_form') {
-        popUpItem.style.display = 'block';
-        console.log('popUpItem: ', popUpItem);
-        flyInterval = requestAnimationFrame(flyAnimate);
-        
-         //  } else if (elem.getAttribute('data-popup') === '#callback_form') {
-              //event.target.dataset.data
-              // popUpItem.style.display = 'block';
-              // console.log('popUpItem: ', popUpItem);
-              // flyInterval = requestAnimationFrame(flyAnimate);
-            // }
-          
-            
-          });
-        
-      //});
+          // проверка , если очистили форму и вызываем вторично, то показать все поля вновь за счет
+          // удаления расставленных нами style.display === 'none'
+
+          if (popUpForm.dataset.hasOwnProperty ('flagNone')){
+
+            popUpForm.querySelectorAll('*').forEach(item => {
+
+              if (item.hasAttribute('style')){
+                
+                if (item.style.display === 'none') {
+                  item.removeAttribute('style');
+                }
+              }
+
+            });
+          }
+          // обходим ошибку фокусировки на невидимом чекбоксе при открытии формы , при условии requared на чекбоксе
+          const formCheck = popUpItem.querySelector('input[type ="checkbox"]');
+          //console.log('formCheck.style: ', formCheck.style);
+          formCheck.style.display = 'block';
+          formCheck.style.position = 'relative';
+          formCheck.style.left = '70px';
+          formCheck.style.bottom = '-15px';
+          formCheck.style.opacity = 0;
+
+          popUpItem.style.display = 'block';
+          flyInterval = requestAnimationFrame(flyAnimate);
+        });
 
       const closePopUp = () => {
         popUpItem.style.display = 'none';
@@ -62,12 +70,9 @@ const togglePopUp = () => {
         cancelAnimationFrame(flyInterval);
       };
 
-      // закрытие мод окна по клику мимо него
+      // закрытие мод окна по клику мимо него  и на крестик
       popUpItem.addEventListener('click', (event) =>{
         let target = event.target;
-        console.log('target.classList: ', target.classList);
-        console.log('target.classList.contains(close_icon): ', target.classList.contains('close_icon'));
-        console.log('target.classList.contains(close-form): ', target.classList.contains('close-form'));
 
         if (target.classList.contains('close-form') || target.classList.contains('close_icon')){
 
@@ -79,6 +84,7 @@ const togglePopUp = () => {
           }
         }
       });   
+
 
       //anime
 
