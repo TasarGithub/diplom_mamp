@@ -1,6 +1,33 @@
 'use strict';
 
 // скрипты
+
+
+const cleaningInput = (item) => {
+  console.log('cleaningInput');
+  item.querySelectorAll('input').forEach(item =>{
+    console.log('item.type: ', item.type);
+    if(item.type ==='text' || item.type ==='tel' ){
+      
+     item.value = '';
+    } else if (item.type === 'checkbox'){
+      item.checked = false;
+      console.log(' item.checked : ',  item.checked );
+    }
+   });
+};
+  
+const noneElemeneForm = (item) => {
+  item.dataset.flagNone = 1;
+  item.querySelectorAll('*').forEach(itemInp => {
+    if (itemInp.tagName === 'INPUT' || itemInp.tagName === 'P' || itemInp.tagName === 'BUTTON'){
+      itemInp.style.display = 'none';
+    // }else if(itemInp.tagName === 'P' || itemInp.tagName === 'BUTTON') {
+    //   itemInp.style.display = 'none';
+    }
+  });
+};
+
 const validation = () => {
 
   const inputName =  document.querySelectorAll('input[type="text"]'),
@@ -23,7 +50,7 @@ const validation = () => {
         const template = masked,
           def = template.replace(/\D/g, ""),
           val = this.value.replace(/\D/g, "");
-        console.log(template);
+        //console.log(template);
         let i = 0,
           newValue = template.replace(/[_\d]/g, function (a) {
             return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
@@ -100,13 +127,13 @@ const togglePopUp = () => {
     if ((popUpItem.id === 'callback_form') || (popUpItem.id === 'free_visit_form' )) {
       
       const popUpBtn = document.querySelector( `[data-popup="#${popUpItem.id}"]` ); 
-      console.log('popUpBtn: ', popUpBtn);
+      //console.log('popUpBtn: ', popUpBtn);
 
-      console.log('popUpItem: ', popUpItem);
+      //console.log('popUpItem: ', popUpItem);
       const  popUpContent = popUpItem.querySelector('.form-content'),
        // popUpForm = popUpItem.querySelector('form[name = "callback_form"');//[name ="${popUpItem.id}"]`);
        popUpForm = popUpItem.querySelector('form');
-        console.log('popUpForm: ', popUpForm);
+        //console.log('popUpForm: ', popUpForm);
       // кнопки запуска модальных окон
 
       
@@ -133,6 +160,15 @@ const togglePopUp = () => {
 
             });
           }
+          // обходим ошибку фокусировки на невидимом чекбоксе при открытии формы , при условии requared на чекбоксе
+          const formCheck = popUpItem.querySelector('input[type ="checkbox"]');
+          //console.log('formCheck.style: ', formCheck.style);
+          formCheck.style.display = 'block';
+          formCheck.style.position = 'relative';
+          formCheck.style.left = '70px';
+          formCheck.style.bottom = '-15px';
+          formCheck.style.opacity = 0;
+
           popUpItem.style.display = 'block';
           flyInterval = requestAnimationFrame(flyAnimate);
         });
@@ -152,7 +188,7 @@ const togglePopUp = () => {
         cancelAnimationFrame(flyInterval);
       };
 
-      // закрытие мод окна по клику мимо него
+      // закрытие мод окна по клику мимо него  и на крестик
       popUpItem.addEventListener('click', (event) =>{
         let target = event.target;
 
@@ -166,6 +202,7 @@ const togglePopUp = () => {
           }
         }
       });   
+
 
       //anime
 
@@ -185,7 +222,9 @@ const togglePopUp = () => {
 
 togglePopUp();
 
-const sendForm = () => {
+const sendForm = function () {
+  
+
   /* 
   
   <form action="" id="footer_form">
@@ -212,30 +251,13 @@ const sendForm = () => {
     let body = {};
     statusMessage.classList.add('status-message');
     statusMessage.style.cssText = 'font-size: 2rem; color: #fff;'; 
+    // statusMessage.style.position = 'relative';
+    // //formCheck.style.left = '70px';
+    // statusMessage.style.top = '50%';
+
     statusMessage.textContent = objMessage.loadMessage;
     objMessage.div = statusMessage;
-  
-    console.log('form: ', form);
-  
-    //анимация для popup
-    let count = 1;
-    let flyAnimate = (popUpContent) => {
-  
-      const flyInterval = requestAnimationFrame(flyAnimate);
-      count = count - 0.005;
-  
-      if (popUpContent.style.opacity >= 0) {
-        popUpContent.style.opacity = count; 
-        } else {
-          //popUp.style.display = 'none';
-          const tempDiv = popUpContent.querySelector('.status-message');
-          if (!!tempDiv) {
-            tempDiv.parentNode.removeChild(tempDiv);
-          }
-          cancelAnimationFrame(flyInterval);
-          count = 0;
-        }
-    };
+ 
     //отправка данных на сервер
    
     const postData = (body) => {
@@ -252,79 +274,75 @@ const sendForm = () => {
   
     // навешиваем оброботки события на submit
     form.forEach(item => { 
-      console.log('item: ', item);
-      const popUpContent = item.parentElement; 
-      console.log('popUpContent: ', popUpContent);
+      const popUpContent = item.parentElement; // берем form-content , чтобы можно было пользоваться анимацией
+    //анимация для popup
+    let count = 1;
 
+    let flyAnimate = () => {
+  
+      const flyInterval = requestAnimationFrame(flyAnimate);
+      count = count - 0.005;
+  
+      if (popUpContent.style.opacity >= 0) {
+        popUpContent.style.opacity = count; 
+        } else {
+          //popUp.style.display = 'none';
+          const tempDiv = popUpContent.querySelector('.status-message');
+          if (!!tempDiv) {
+            tempDiv.parentNode.removeChild(tempDiv);
+          }
+          cancelAnimationFrame(flyInterval);
+          count = 0;
+        }
+    };
       item.addEventListener('submit', (event) => {
+        statusMessage.textContent = objMessage.loadMessage;
         event.preventDefault();
-        //debugger;
+        popUpContent.style.opacity = 1;
+        count = 1;
+
+        let target =  event.target;
+        const cleaningPopUp = () => {
+          noneElemeneForm(item);
+          cleaningInput(item);
+          flyAnimate();
+          const popUpClose = target.closest('.popup');
+          
+          setTimeout(() => { 
+            popUpClose.style.display = 'none';
+            },5000);
+        };
+
         let flag = 0;
         const formData =  new FormData(item);
-        // debugger;
+
         formData.forEach((val, key) => {
-          console.log('key: ', key);
-          console.log('val: ', val);
-          
-          if ((val.trim() === '') && (key.indexOf('mess') === -1)) {
-            flag = 1;
-          }
           body[key] = val;
         });
-        
-        
-  
-        if (flag) return; // незаполненная часть формы -уходим
+
         item.appendChild(objMessage.div);
-        // alert('postdata next');
+
         postData(body)
         .then((response) => {
           if (response.status !== 200){
-            item.dataset.flagNone = 1;
-              console.log('item.dataset: ', item.dataset);
-              console.log('item: ', item);
-            item.querySelectorAll('*').forEach(itemInp => {
-              
-              
-              console.log('itemInp.TagName: ', itemInp.tagName);
-              if (itemInp.tagName === 'INPUT'){
-                itemInp.style.display = 'none';
-              }else if(itemInp.tagName === 'P' || itemInp.tagName === 'BUTTON') {
-                itemInp.style.display = 'none';
-              }
-            });
-            
-            
             throw new  Error('Status network not 200');
           }
-          // обнуление
-          item.querySelectorAll('input').forEach(item =>{
-             if(item.type ==='text' || item.type ==='tel' ){
-              item.value = '';
-             } else if (item.type === 'checkbox'){
-               item.checked = false;
-             }
-            });
+
+          cleaningPopUp();
           objMessage.div.textContent = objMessage.succesMessage;
+
         })
-        .then(() => {
-          if (item.style.display === 'block'){
-            flyAnimate(popUpContent);
-          } else {
-          const tempDiv = item.querySelector('.status-message');
-          setTimeout(() => { 
-            if (!!tempDiv) {
-            tempDiv.parentNode.removeChild(tempDiv);}
-            },4000);
-          }
-        })
+        // все хорошо отправилось, можно закрывать форму, если она в статусе block
         .catch((error) => {
+         // обнуление после ошибки отправки
+          cleaningPopUp();
           objMessage.div.textContent = objMessage.errorMessage;
           console.log('errorMessage: ', objMessage.errorMessage);
           console.error(error);
         });
       });
     });
+    statusMessage.textContent = '';
   };
 
   sendForm();
