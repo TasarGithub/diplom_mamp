@@ -7,7 +7,9 @@ const validation = () => {
 
     item.addEventListener('input',() => {
       //debugger;
-      item.value = item.value.replace(/[^а-яё\s]/gi, '');
+      if (!item.parentElement.classList.contains('price-message')){
+        item.value = item.value.replace(/[^а-яё\s]/gi, '');
+      } 
     });
   });     
  // ввод телефона по форме 

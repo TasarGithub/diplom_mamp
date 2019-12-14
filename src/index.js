@@ -5,7 +5,8 @@ import burgerMenu from './modules/burgerMenu';
 import togglePopUp from './modules/togglePopUp';
 import sendForm from './modules/sendForm';
 import slider from './modules/slider';
-// import cleaningInput from './modules/cleaningInput';
+import calc from './modules/calc';
+
 
 /*
 
@@ -16,7 +17,7 @@ import tabs from './modules/tabs';
 import toggleImg from './modules/toggleImg';
 import onlyNumber from './modules/onlyNumber';
 import slider from './modules/slider';
-import calc from './modules/calc';
+// import cleaningInput from './modules/cleaningInput';
 
 
 
@@ -56,4 +57,4 @@ sendForm();
 togglePopUp();
 burgerMenu();
 slider();
-// noneElemeneForm();
+calc();

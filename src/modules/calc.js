@@ -1,12 +1,12 @@
 const calc = () => {
 
-  const calcBlock = document.getElementById('card_order'),
+  const calcBlock = document.querySelector('#card_order'),
     calcTime = document.querySelector('.time'),
     cardType = document.querySelectorAll('input[name ="card-type"'),
     calcClub = document.querySelector('.club'),
-    pricePromo = document.querySelector('.price'),
+    pricePromoStart = document.querySelector('.price-message').children[0],
     calcPriceTotal = document.getElementById('price-total'),
-    club = document.querySelectorAll('input[name ="clib-name"'),
+    club = document.querySelectorAll('input[name ="club-name"'),
     priceMozaika = {
      1: 1999,
      6: 9900,
@@ -17,22 +17,27 @@ const calc = () => {
     priceSchelkovo = {
       1: 1999,
       6: 9900,
-      9: 13900,
-      12: 19900,
-      122: 9900
+      9: 21900,
+      12: 24900,
+      122: 14900
     };
-
+    pricePromoStart.addEventListener('input',() => {
+      //debugger;
+      pricePromoStart.value = pricePromoStart.value.replace(/[^а-яё\d]/gi, '');
+    });
   const countSum = () => {
  
     let total = 0,
      clubName = '',
       timeValue = 1,
-      promoValue = '',
-      priceValue = 0;
+       
+      priceValue = 0,
+      discount = 0;
+    const promoValue = document.querySelector('.price-message').children[0].value;
      
-
+//debugger;      
       club.forEach(item => {
-        if (item.checked){
+        if (item.checked && item.id.indexOf('card_leto') >= 0){
           clubName = item.value;
         }
       });
@@ -41,32 +46,22 @@ const calc = () => {
           timeValue = item.value;
         }
       });
-      priceValue = (club === 'mozaika')? priceMozaika[timeValue] : priceSchelkovo[timeValue];
+      priceValue = (clubName === 'mozaika')? priceMozaika[timeValue] : priceSchelkovo[timeValue];
 
 
-    if (!!promoValue){
-      priceValue = 0;
-    } else {
-      priceValue = pricePromo;
-    }
-
-    cardType.forEach(item => {
-      if (item.checked){
-        timeValue = item.value;
-      }
-    });
-
-
-  calcPriceTotal.value = priceValue;
-
+    if (promoValue.toUpperCase() === 'ТЕЛО2019') {
+        calcPriceTotal.textContent = Math.floor(priceValue*0.70);
+      } else {
+      calcPriceTotal.textContent = priceValue;
+      } 
 
   };
 
 
   calcBlock.addEventListener('change', (event) => {
-
+    //debugger;ddd
     const target = event.target;
-    if (target.matches('input') && !target.matches('input["requred"')) {
+    if (target.matches('input') && !target.matches('input[required]')) {
       countSum();
     }
   });
