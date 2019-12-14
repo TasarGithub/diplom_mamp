@@ -2641,39 +2641,35 @@ p.personal-data input[type=checkbox]:checked+label:before {
     font-size: 12px
   }
 
-  /* .slider-dots {
-    bottom: 30px
-  } */
+}
+.slider-dots {
+  position: absolute; 
+  /* position: relative; */
+  bottom: 50px;
+  left: 50%;
+  margin-left: -65px;
+  z-index: 1000;
+  display: flex
+}
 
+.slider-dots .dot {
+  float: left;
+  width: 22px;
+  height: 4px;
+  background-color: #fff;
+  border: none;
+  border-radius: 2px;
+  color: transparent;
+  margin-right: 5px
+}
+.slider-dots .dot-active {
+  background-color: #ffd11a;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2); 
+}
 
-  .slider-dots {
-    position: absolute; 
-    /* position: relative; */
-    bottom: 50px;
-    left: 50%;
-    margin-left: -65px;
-    z-index: 1000;
-    display: flex
-  }
-  
-  .slider-dots .dot {
-    float: left;
-    width: 22px;
-    height: 4px;
-    background-color: #fff;
-    border: none;
-    border-radius: 2px;
-    color: transparent;
-    margin-right: 5px
-  }
-  .slider-dots .dot-active {
-    background-color: #ffd11a;
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2); 
-  }
-
-    .slider-dots .dot:hover {
-     background-color: #ffd11a;
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2); 
-  }
+  .slider-dots .dot:hover {
+   background-color: #ffd11a;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2); 
+}
