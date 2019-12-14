@@ -6,6 +6,8 @@ import togglePopUp from './modules/togglePopUp';
 import sendForm from './modules/sendForm';
 import slider from './modules/slider';
 import calc from './modules/calc';
+import bugFixFocusForm from './modules/calc';
+
 
 
 /*
@@ -51,6 +53,7 @@ calc(100);
 
 
 */
+bugFixFocusForm();
 validation();
 // send-ajax
 sendForm();
