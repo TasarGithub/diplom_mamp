@@ -4,7 +4,7 @@ import validation from './modules/validation';
 import burgerMenu from './modules/burgerMenu';
 import togglePopUp from './modules/togglePopUp';
 import sendForm from './modules/sendForm';
-// import noneElemeneForm from './modules/noneElemeneForm';
+import slider from './modules/slider';
 // import cleaningInput from './modules/cleaningInput';
 
 /*
@@ -55,5 +55,5 @@ validation();
 sendForm();
 togglePopUp();
 burgerMenu();
-// cleaningInput();
+slider();
 // noneElemeneForm();

@@ -4,7 +4,7 @@ const validation = () => {
         inputTelephone = document.querySelectorAll('input[type="tel"]');
   //валидация 
   inputName.forEach(item => {
-    console.log('itemforEach: ', item);
+
     item.addEventListener('input',() => {
       //debugger;
       item.value = item.value.replace(/[^а-яё\s]/gi, '');
@@ -15,14 +15,14 @@ const validation = () => {
 
       let masked = '+7 (___) ___-__-__';
       const elem = item;
-      console.log('elem: ', elem);
+      
       
       function mask(event) {
         const keyCode = event.keyCode;
         const template = masked,
           def = template.replace(/\D/g, ""),
           val = this.value.replace(/\D/g, "");
-        console.log(template);
+        //console.log(template);
         let i = 0,
           newValue = template.replace(/[_\d]/g, function (a) {
             return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
