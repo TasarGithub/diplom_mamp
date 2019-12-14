@@ -1,5 +1,5 @@
 const slider = () => {
-
+//main-slider
   const slider = document.querySelector('.main-slider'),
 
   slide = slider.querySelectorAll('.slide'),
