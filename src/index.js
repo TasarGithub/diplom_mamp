@@ -1,12 +1,12 @@
 'use strict';
-
+import bugFixFocusForm from './modules/bugFixFocusForm';
 import validation from './modules/validation';
 import burgerMenu from './modules/burgerMenu';
 import togglePopUp from './modules/togglePopUp';
 import sendForm from './modules/sendForm';
 import slider from './modules/slider';
 import calc from './modules/calc';
-import bugFixFocusForm from './modules/calc';
+
 
 
 
@@ -53,7 +53,7 @@ calc(100);
 
 
 */
-bugFixFocusForm();
+//bugFixFocusForm();
 validation();
 // send-ajax
 sendForm();

@@ -48,11 +48,6 @@ const slider = () => {
   };
   console.log(slide.length);
  
-
-
-
-
-  
   const prevSlide = (sld, dt, index, strClass) => {
 
     sld[index].style.display = 'none';
@@ -111,11 +106,11 @@ const slider = () => {
   });
   slider.addEventListener('mouseout', (event) => {
     if (event.target.matches('.dot')) {
-      startSlide(1500);
+      startSlide(2000);
     }
   });
 
- startSlide(1000);
+ startSlide(2000);
 
 };
 

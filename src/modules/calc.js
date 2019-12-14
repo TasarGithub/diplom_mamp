@@ -1,6 +1,9 @@
+import bugFixFocusForm from './bugFixFocusForm';
+
 const calc = () => {
 
-  const calcBlock = document.querySelector('#card_order'),
+  const calcForm = document.querySelector('#card_order'),
+  
     calcTime = document.querySelector('.time'),
     cardType = document.querySelectorAll('input[name ="card-type"'),
     calcClub = document.querySelector('.club'),
@@ -21,8 +24,10 @@ const calc = () => {
       12: 24900,
       122: 14900
     };
+    
+    console.log('calcForm: ', calcForm);
     pricePromoStart.addEventListener('input',() => {
-      //debugger;
+      
       pricePromoStart.value = pricePromoStart.value.replace(/[^а-яё\d]/gi, '');
     });
   const countSum = () => {
@@ -57,8 +62,9 @@ const calc = () => {
 
   };
 
+  bugFixFocusForm(calcForm.querySelector('input[type ="checkbox"]'));
 
-  calcBlock.addEventListener('change', (event) => {
+  calcForm.addEventListener('change', (event) => {
     //debugger;ddd
     const target = event.target;
     if (target.matches('input') && !target.matches('input[required]')) {
