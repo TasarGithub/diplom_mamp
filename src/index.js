@@ -7,13 +7,13 @@ import sendForm from './modules/sendForm';
 import slider from './modules/slider';
 import calc from './modules/calc';
 import toggleThanks from './modules/toggleThanks';
-
 import toggleHeadClubSelect from './modules/toggleHeadClubSelect';
+import fixedTopMenu from './modules/fixedTopMenu';
 ////
 /*
 
 
-import countTimer from './modules/countTimer';
+
 
 import tabs from './modules/tabs';
 import toggleImg from './modules/toggleImg';
@@ -53,6 +53,7 @@ calc(100);
 
 
 */
+fixedTopMenu();
 toggleHeadClubSelect();
 toggleThanks();
 bugFixFocusForm();
