@@ -1,6 +1,6 @@
-const slider = (sliderArg) => {
+const gallerySlider = () => {
 
-  const slider = document.querySelector(sliderArg),
+  const slider = document.querySelector('.gallery-slider'),
     slide = slider.querySelectorAll('.slide');
   let currentSlide = 0,
     interval = 0;
@@ -21,9 +21,8 @@ const slider = (sliderArg) => {
       dotLi.classList.add('dot-active');
     }
   }
-//debugger;dsdsd
-
-  const dot = slider.querySelectorAll('.dot');
+//debugger;
+  const dot = document.querySelectorAll('.dot');
   
   const countSlide = (n,sld) => {
  
@@ -104,4 +103,4 @@ const slider = (sliderArg) => {
 };
 
 
-export default slider;
+export default gallerySlider;

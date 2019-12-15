@@ -8,8 +8,8 @@ import slider from './modules/slider';
 import calc from './modules/calc';
 import toggleThanks from './modules/toggleThanks';
 
-
-
+//import gallerySlider from './modules/gallerySlider';
+////
 /*
 
 
@@ -53,6 +53,7 @@ calc(100);
 
 
 */
+//gallerySlider();
 toggleThanks();
 bugFixFocusForm();
 validation();
@@ -60,5 +61,6 @@ validation();
 sendForm();
 togglePopUp();
 burgerMenu();
-slider();
+slider('.main-slider');
+slider('.gallery-slider');
 calc();
