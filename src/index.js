@@ -9,13 +9,15 @@ import calc from './modules/calc';
 import toggleThanks from './modules/toggleThanks';
 import toggleHeadClubSelect from './modules/toggleHeadClubSelect';
 import fixedTopMenu from './modules/fixedTopMenu';
+import toggleGift from './modules/toggleGift';
+
 ////
 /*
 
 
 
 
-import tabs from './modules/tabs';
+
 import toggleImg from './modules/toggleImg';
 import onlyNumber from './modules/onlyNumber';
 import slider from './modules/slider';
@@ -53,6 +55,7 @@ calc(100);
 
 
 */
+toggleGift();
 fixedTopMenu();
 toggleHeadClubSelect();
 toggleThanks();

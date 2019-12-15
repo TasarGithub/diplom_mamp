@@ -1,5 +1,3 @@
-//import bugFixFocusForm from './bugFixFocusForm';
-
 const togglePopUp = () => {
      
   const popUp = document.querySelectorAll('.popup');
