@@ -1,8 +1,4 @@
-
-
 const fixedTopMenu = () => {
-  
-
   const topMenu = document.querySelector('.top-menu'),
   base = topMenu.offsetTop;
   window.addEventListener('scroll', () => {
