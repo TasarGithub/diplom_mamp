@@ -1,4 +1,4 @@
-import bugFixFocusForm from './bugFixFocusForm';
+//import bugFixFocusForm from './bugFixFocusForm';
 
 const togglePopUp = () => {
      
@@ -47,9 +47,9 @@ const togglePopUp = () => {
 
           // обходим ошибку фокусировки на невидимом чекбоксе при открытии формы , при условии requared на чекбоксе
           //let bugix =bugFixFocusForm.bind(this);  
-          const formCheck = popUpItem.querySelector('input[type ="checkbox"]');
+          //const formCheck = popUpItem.querySelector('input[type ="checkbox"]');
    //debugger;
-          bugFixFocusForm(formCheck);
+          //bugFixFocusForm(formCheck);
           
           popUpItem.style.display = 'block';
           flyInterval = requestAnimationFrame(flyAnimate);

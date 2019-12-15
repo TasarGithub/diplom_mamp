@@ -1,11 +1,15 @@
-import bugFixFocusForm from './bugFixFocusForm';
+//import bugFixFocusForm from './bugFixFocusForm';
 
 const calc = () => {
+  
 
+  if (document.querySelector('html').id === 'schelkovo' || document.querySelector('html').id === 'mozaika'){
+    return;
+  }
   const calcForm = document.querySelector('#card_order'),
   
     cardType = document.querySelectorAll('input[name ="card-type"'),
-    pricePromoStart = document.querySelector('.price-message').children[0],
+    promoCode = document.querySelector('input[placeholder="Промокод"]'),
     calcPriceTotal = document.getElementById('price-total'),
     club = document.querySelectorAll('input[name ="club-name"'),
     priceMozaika = {
@@ -24,9 +28,9 @@ const calc = () => {
     };
     
     console.log('calcForm: ', calcForm);
-    pricePromoStart.addEventListener('input',() => {
+    promoCode.addEventListener('input',() => {
       
-      pricePromoStart.value = pricePromoStart.value.replace(/[^а-яё\d]/gi, '');
+      promoCode.value = promoCode.value.replace(/[^а-яё\d]/gi, '');
     });
   const countSum = () => {
  
@@ -57,7 +61,7 @@ const calc = () => {
 
   };
 
-  bugFixFocusForm(calcForm.querySelector('input[type ="checkbox"]'));
+  //bugFixFocusForm(calcForm.querySelector('input[type ="checkbox"]'));
 
   calcForm.addEventListener('change', (event) => {
     const target = event.target;
