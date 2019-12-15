@@ -10,7 +10,7 @@ import toggleThanks from './modules/toggleThanks';
 import toggleHeadClubSelect from './modules/toggleHeadClubSelect';
 import fixedTopMenu from './modules/fixedTopMenu';
 import toggleGift from './modules/toggleGift';
-
+import topArrow from './modules/topArrow';
 ////
 /*
 
@@ -55,6 +55,7 @@ calc(100);
 
 
 */
+topArrow();
 toggleGift();
 fixedTopMenu();
 toggleHeadClubSelect();
