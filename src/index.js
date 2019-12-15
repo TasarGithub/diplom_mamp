@@ -8,7 +8,7 @@ import slider from './modules/slider';
 import calc from './modules/calc';
 import toggleThanks from './modules/toggleThanks';
 
-//import gallerySlider from './modules/gallerySlider';
+import toggleHeadClubSelect from './modules/toggleHeadClubSelect';
 ////
 /*
 
@@ -46,14 +46,14 @@ toggleImg();
 onlyNumber();
 
 slider();
-
+sasas
 
 calc(100);
 
 
 
 */
-//gallerySlider();
+toggleHeadClubSelect();
 toggleThanks();
 bugFixFocusForm();
 validation();
