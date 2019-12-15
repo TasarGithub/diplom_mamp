@@ -1,34 +1,22 @@
 const slider = () => {
 
   const slider = document.querySelector('.main-slider'),
-
-  slide = slider.querySelectorAll('.slide'),
-  wrapSlider = slider.parentElement;
-  console.log('wrapSlider: ', wrapSlider);
-
-    console.log('slide: ', slide);
-    
+    slide = slider.querySelectorAll('.slide');
   let currentSlide = 0,
     interval = 0;
 
   // добавляем dots и dot
-
   // создание элемента ul
   const dotUl = document.createElement('ul');
-  const dotUlWrap = document.createElement('ul');
   //вставляем ul элемент в верстку
- // wrapSlider.appendChild(dotUlWrap);
   slider.appendChild(dotUl);
-  // одвеваем оформление на новый элемент
+  // одеваем оформление на новый элемент
   dotUl.classList.add('slider-dots');
   //создаем li dot и вставляем в верстку по кол-ву слайдов 
   for (let i = 0; i < slide.length; i++) {
     const dotLi = document.createElement('li');
     dotUl.appendChild(dotLi);
     dotLi.classList.add('dot');
-    //const dotLiButton = document.createElement('button');
-    //dotLi.appendChild(dotLiButton);
-    //dotLiButton.classList.add('dot-btn');
     if ( i === 0) {
       dotLi.classList.add('dot-active');
     }

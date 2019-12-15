@@ -4,9 +4,7 @@ const calc = () => {
 
   const calcForm = document.querySelector('#card_order'),
   
-    calcTime = document.querySelector('.time'),
     cardType = document.querySelectorAll('input[name ="card-type"'),
-    calcClub = document.querySelector('.club'),
     pricePromoStart = document.querySelector('.price-message').children[0],
     calcPriceTotal = document.getElementById('price-total'),
     club = document.querySelectorAll('input[name ="club-name"'),
@@ -18,8 +16,8 @@ const calc = () => {
      122: 9900
     },
     priceSchelkovo = {
-      1: 1999,
-      6: 9900,
+      1: 2999,
+      6: 14900,
       9: 21900,
       12: 24900,
       122: 14900
@@ -32,12 +30,9 @@ const calc = () => {
     });
   const countSum = () => {
  
-    let total = 0,
-     clubName = '',
-      timeValue = 1,
-       
-      priceValue = 0,
-      discount = 0;
+    let clubName = '',
+     timeValue = 1,
+     priceValue = 0;
     const promoValue = document.querySelector('.price-message').children[0].value;
      
 //debugger;      
@@ -65,7 +60,6 @@ const calc = () => {
   bugFixFocusForm(calcForm.querySelector('input[type ="checkbox"]'));
 
   calcForm.addEventListener('change', (event) => {
-    //debugger;ddd
     const target = event.target;
     if (target.matches('input') && !target.matches('input[required]')) {
       countSum();

@@ -2648,7 +2648,7 @@ p.personal-data input[type=checkbox]:checked+label:before {
   bottom: 50px;
   left: 50%;
   margin-left: -65px;
-  z-index: 1000;
+  z-index: 1002;
   display: flex
 }
 

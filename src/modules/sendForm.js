@@ -11,9 +11,6 @@ const sendForm = function () {
   let body = {};
   statusMessage.classList.add('status-message');
   statusMessage.style.cssText = 'font-size: 2rem; color: #fff;'; 
-  // statusMessage.style.position = 'relative';
-  // //formCheck.style.left = '70px';
-  // statusMessage.style.top = '50%';
 
   statusMessage.textContent = objMessage.loadMessage;
   objMessage.div = statusMessage;
@@ -35,55 +32,72 @@ const sendForm = function () {
   // навешиваем оброботки события на submit
   form.forEach(item => { 
     const popUpContent = item.parentElement; // берем form-content , чтобы можно было пользоваться анимацией
-  //анимация для popup
-  let count = 1;
+    //анимация для popup
+    let count = 1;
 
-  let flyAnimate = () => {
+    let flyAnimate = () => {
 
-    const flyInterval = requestAnimationFrame(flyAnimate);
-    count = count - 0.005;
+      const flyInterval = requestAnimationFrame(flyAnimate);
+      count = count - 0.005;
 
-    if (popUpContent.style.opacity >= 0) {
-      popUpContent.style.opacity = count; 
-      } else {
-        //popUp.style.display = 'none';
-        const tempDiv = popUpContent.querySelector('.status-message');
-        if (!!tempDiv) {
-          tempDiv.parentNode.removeChild(tempDiv);
+      if (popUpContent.style.opacity >= 0) {
+        popUpContent.style.opacity = count; 
+        } else {
+          const tempDiv = popUpContent.querySelector('.status-message');
+          if (!!tempDiv) {
+            tempDiv.parentNode.removeChild(tempDiv);
+          }
+          cancelAnimationFrame(flyInterval);
+          count = 0;
         }
-        cancelAnimationFrame(flyInterval);
-        count = 0;
-      }
-  };
+    };
     item.addEventListener('submit', (event) => {
+      
       statusMessage.textContent = objMessage.loadMessage;
       event.preventDefault();
       popUpContent.style.opacity = 1;
       count = 1;
 
       let target =  event.target;
+
+      const formData =  new FormData(item);
+      //debugger;
+      let flag = 0;
+      formData.forEach((val, key) => {
+
+        if (key === 'phone'&& val.length !== 18 ) {
+
+          flag = 1;
+          return;
+        } else {
+          statusMessage.textContent = objMessage.loadMessage;;
+        }
+        body[key] = val;
+      });
+      if (flag === 1){
+        statusMessage.textContent = 'Введите номер телефона полность';
+        statusMessage.style.cssText = 'font-size: 1rem; color: #fff;'; 
+        item.appendChild(objMessage.div);
+        return;
+      } else {
+        statusMessage.style.cssText = 'font-size: 2rem; color: #fff;'; 
+      }
+
       const cleaningPopUp = () => {
-      
-        // cleaningInput(item);
+
         item.querySelectorAll('input').forEach(item =>{
-          console.log('item.type: ', item.type);
           if(item.type ==='text' || item.type ==='tel' ){
             
            item.value = '';
           } else if (item.type === 'checkbox'){
             item.checked = false;
-            console.log(' item.checked : ',  item.checked );
           }
          });
         
-        
-        // noneElemeneForm(item);
         item.dataset.flagNone = 1;
         item.querySelectorAll('*').forEach(itemInp => {
           if (itemInp.tagName === 'INPUT' || itemInp.tagName === 'P' || itemInp.tagName === 'BUTTON'){
             itemInp.style.display = 'none';
-          // }else if(itemInp.tagName === 'P' || itemInp.tagName === 'BUTTON') {
-          //   itemInp.style.display = 'none';
           }
         });
 
@@ -95,12 +109,8 @@ const sendForm = function () {
           },5000);
       };
 
-      let flag = 0;
-      const formData =  new FormData(item);
 
-      formData.forEach((val, key) => {
-        body[key] = val;
-      });
+ 
 
       item.appendChild(objMessage.div);
 
