@@ -13,7 +13,7 @@ const sliderCarousel = () => {
         widthSlide: Math.floor(100 / slidesToShow),
         maxPosition: slides.length - slidesToShow
       };
-  debugger;
+  //debugger;
         main.style.cssText = `overflow: hidden !important;`;
         wrap.style.cssText = `display: flex !important;
         transition: transform 0.5s !important;
