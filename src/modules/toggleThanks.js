@@ -4,19 +4,12 @@ const toggleThanks = () => {
      
   const popUpThanks = document.getElementById('thanks'),
       pThanks = popUpThanks.querySelector('p'); 
-       
 
-    //debugger;
-
-      
       const popUpBtn = document.querySelector( `button` ); 
-      //console.log('popUpBtn: ', popUpBtn);
-
-      //console.log('popUpItem: ', popUpItem);
       
       const closePopUp = () => {
         popUpThanks.style.display = 'none';
-        pThanks.textContent = 'Ваша заявка отправлена. <br> Мы свяжемся с вами в ближайшее время.';
+        pThanks.innerHTML = 'Ваша заявка отправлена. <br> Мы свяжемся с вами в ближайшее время.';
         
       };
 
