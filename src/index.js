@@ -11,6 +11,7 @@ import toggleHeadClubSelect from './modules/toggleHeadClubSelect';
 import fixedTopMenu from './modules/fixedTopMenu';
 import toggleGift from './modules/toggleGift';
 import topArrow from './modules/topArrow';
+import sliderCarousel from './modules/sliderCarousel';
 ////
 /*
 
@@ -18,7 +19,7 @@ import topArrow from './modules/topArrow';
 
 
 
-import toggleImg from './modules/toggleImg';
+
 import onlyNumber from './modules/onlyNumber';
 import slider from './modules/slider';
 // import cleaningInput from './modules/cleaningInput';
@@ -55,6 +56,7 @@ calc(100);
 
 
 */
+sliderCarousel();
 topArrow();
 toggleGift();
 fixedTopMenu();

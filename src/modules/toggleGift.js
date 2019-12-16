@@ -1,10 +1,14 @@
 const toggleGift = () => {
-     
+
+  
+
   const fixedGift = document.querySelector('.fixed-gift'),
     gift = document.getElementById('gift'),
     overlayGift = gift.querySelector('.overlay'),
     body = document.querySelector('body');
-       
+  
+    console.log('toggleGift document.querySelector(#services wrapper): ', document.querySelector('#services'));
+
     //debugger;
 
     fixedGift.addEventListener('click', (event) =>{
