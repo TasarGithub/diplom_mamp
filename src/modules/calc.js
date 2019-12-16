@@ -37,7 +37,7 @@ const calc = () => {
     let clubName = '',
      timeValue = 1,
      priceValue = 0;
-    const promoValue = document.querySelector('.price-message').children[0].value;
+    //const promoValue = document.querySelector('.price-message').children[0].value;
      
 //debugger;      
       club.forEach(item => {
@@ -53,7 +53,7 @@ const calc = () => {
       priceValue = (clubName === 'mozaika')? priceMozaika[timeValue] : priceSchelkovo[timeValue];
 
 
-    if (promoValue.toUpperCase() === 'ТЕЛО2019') {
+    if (promoCode.toUpperCase() === 'ТЕЛО2019') {
         calcPriceTotal.textContent = Math.floor(priceValue*0.70);
       } else {
       calcPriceTotal.textContent = priceValue;
